@@ -16,6 +16,7 @@
     "nodemon": "^2.0.22"
   },
   "scripts": {
-    "start:dev": "node_modules/.bin/nodemon src/index.js"
+    "start:dev": "node_modules/.bin/nodemon src/index.js",
+    "test:redis": "node_modules/.bin/nodemon test.redis.js"
   }
 }

@@ -1,14 +1,12 @@
 const saveConversation = async (redisClient, userid, message, answer) => {
-  const conversations = await redisClient.get(userid);
-  console.log(conversations);
-  return;
-  let jsonConversation = JSON.parse(conversations);
-  jsonConversation.push([
-    { role: "user", content: message },
-    { role: "assistant", content: answer },
-  ]);
-
-  client.set(userid, JSON.stringify(jsonConversation));
+  let conversationsJson = [];
+  const conversationsString = await redisClient.get(userid);
+  if(conversationsString){
+    conversationsJson = JSON.parse(conversationsString, null, 2);
+  }
+  conversationsJson.push({ role: "user", content: message });
+  conversationsJson.push({ role: "assistant", content: answer });
+  redisClient.set(userid, JSON.stringify(conversationsJson));
 };
 
 module.exports = {

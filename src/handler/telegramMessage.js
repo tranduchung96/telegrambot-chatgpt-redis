@@ -1,5 +1,3 @@
-
-
 function handleTelegramMessage(userid, message){
     
 }
